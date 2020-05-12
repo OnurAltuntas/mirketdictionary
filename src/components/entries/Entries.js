@@ -8,9 +8,7 @@ const Entries = (props) => {
 
     const { entries } = props;
     console.log(props);
-
     if (entries) {
-
         return (
             <div>
                 {entries.map(item => (
@@ -29,7 +27,6 @@ const Entries = (props) => {
         )
     }
 }
-
 
 const mapStateToProps = (state, ownProps) => {
     console.log(state)
