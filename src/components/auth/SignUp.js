@@ -112,10 +112,8 @@ export default function SignIn() {
           >
           SIGN UP
           </Button>
-          
         </form>
       </div>
-     
     </Container>
   );
 }

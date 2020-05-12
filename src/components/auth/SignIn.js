@@ -7,24 +7,13 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {connect} from 'react-redux'
+import { signIn } from '../../redux/actions/authActions'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,9 +36,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function SignIn() {
+ function SignIn({authError,singInAction}) {
   const classes = useStyles();
-  const [UserInfos, setUserInfos] = useState({})
+  const [UserInfos, setUserInfos] = useState({email:'',password:''})
 
   const handleOnChange = (e) =>{
     setUserInfos({
@@ -61,9 +50,12 @@ export default function SignIn() {
   const handleSubmit = (e) =>{
     e.preventDefault();
     console.log(UserInfos);
+    singInAction(UserInfos)
+  
   }
-
+  
   return (
+   
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -125,8 +117,24 @@ export default function SignIn() {
             </Grid>
           </Grid>
         </form>
+
+        {authError ? <p>{authError}</p>:null}
       </div>
       
     </Container>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    authError:state.auth.authError
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    singInAction : (creds) => dispatch(signIn(creds))
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignIn);
