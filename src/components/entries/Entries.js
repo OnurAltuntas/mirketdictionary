@@ -7,7 +7,7 @@ import { compose } from 'redux'
 const Entries = (props) => {
 
     const { entries } = props;
-    console.log(props);
+   
     if (entries) {
         return (
             <div>
@@ -29,9 +29,9 @@ const Entries = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state)
+  
     const projects = state.firestore.ordered.entries;
-    console.log(projects)
+   
     return {
         entries: projects
     }

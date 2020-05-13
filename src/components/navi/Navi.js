@@ -1,13 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import logo from '../assets/mirket-icon.png'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -75,35 +75,40 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
- function Navi() {
+function Navi({ auth,profile }) {
     const classes = useStyles();
+    
+    const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
     return (
         <div className={classes.grow}>
             <AppBar style={{ background: '#2E3B55' }} position="static">
                 <Toolbar>
+                   
+                        <div><h2>mirket</h2></div>
+                        <Typography className={classes.title} variant="h6" noWrap>
+                        <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>    <img src={logo} alt="logo" height="100" width="100"></img></Link>
+                        </Typography>
 
-                    <div><h2>mirket</h2></div>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        <img src={logo} alt="logo" height="100" width="100"></img>
-                    </Typography>
+                        <div><h2>dictionary</h2></div>
+                    
 
-                    <div><h2>dictionary</h2></div>
                     <div className={classes.search}> </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                     </div>
-                    <SignedInLinks/>
-                    <SignedOutLinks/>
+                    {auth.isLoaded &&
+                        links
+                    }
                 </Toolbar>
             </AppBar>
         </div>
     );
 }
 
-const mapStateToProps = (state) =>{
-    console.log(state);
+const mapStateToProps = (state) => {
     return {
-
+        auth: state.firebase.auth,
+        profile:state.firebase.profile
     }
 }
 

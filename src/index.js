@@ -14,13 +14,21 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 const store = configureStore();
 
 
+
+const profileSpecificProps = {
+  userProfile: 'users',
+  useFirestoreForProfile: true,
+  enableRedirectHandling: false,
+  resetBeforeLogin: false,
+}
+
 const rrfProps = {
   firebase,
   config: fbConfig,
+  profileSpecificProps,
   dispatch: store.dispatch,
   createFirestoreInstance
 };
-
 
 ReactDOM.render(
  

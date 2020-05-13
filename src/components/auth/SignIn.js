@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 import { signIn } from '../../redux/actions/authActions'
+import { Redirect } from 'react-router-dom'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
- function SignIn({authError,singInAction}) {
+ function SignIn({authError,singInAction,auth}) {
   const classes = useStyles();
   const [UserInfos, setUserInfos] = useState({email:'',password:''})
 
@@ -53,9 +54,9 @@ const useStyles = makeStyles((theme) => ({
     singInAction(UserInfos)
   
   }
-  
+
+  if(auth.uid) return <Redirect to = '/'/>
   return (
-   
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -126,8 +127,10 @@ const useStyles = makeStyles((theme) => ({
 }
 
 const mapStateToProps = (state) => {
+
   return {
-    authError:state.auth.authError
+    authError:state.auth.authError,
+    auth:state.firebase.auth
   }
 }
 
