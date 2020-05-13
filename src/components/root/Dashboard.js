@@ -2,6 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Entries from '../entries/Entries'
+import CreateEntries from '../entries/CreateEntries'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,8 +25,9 @@ export default function FullWidthGrid() {
         <Grid item xs={6} sm={3}>
         //topics
         </Grid>
-        <Grid item xs={18} sm={9}>
-          <Entries />
+        <Grid item xs={18} sm={6}>
+        <CreateEntries/>
+        <Entries/>
         </Grid>
       </Grid>
     </div>

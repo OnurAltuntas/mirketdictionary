@@ -77,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Navi({ auth,profile }) {
     const classes = useStyles();
+    console.log(auth.email)
     
     const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
     return (
