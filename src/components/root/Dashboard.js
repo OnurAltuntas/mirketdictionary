@@ -3,9 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Entries from '../entries/Entries'
 import CreateEntries from '../entries/CreateEntries'
+import Topics from '../topics/Topics';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStylesGrid = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -17,19 +18,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FullWidthGrid() {
-  const classes = useStyles();
+  const classesGrid = useStylesGrid();
 
   return (
-    <div className={classes.root}>
-      <Grid container spacing={4}>
-        <Grid item xs={6} sm={3}>
-        //topics
-        </Grid>
-        <Grid item xs={18} sm={6}>
-        <CreateEntries/>
-        <Entries/>
-        </Grid>
-      </Grid>
+    <div className={classesGrid.root}>
+     <Entries/>
+     <CreateEntries/>
     </div>
   );
 }

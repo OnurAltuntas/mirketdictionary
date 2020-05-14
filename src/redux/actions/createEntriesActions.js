@@ -9,7 +9,7 @@ export const createProject = (project) => {
             ...project
         }).then(()=>{
             dispatch({type:'CREATE_PROJECT',project});
-            alertify.success('Project is Added');
+            alertify.success('Entrie is Added');
         }).catch((err)=>{
             dispatch({type:'CREATE_PROJECT_ERROR'},err)
             alertify.error('Something is wrong please try later');
