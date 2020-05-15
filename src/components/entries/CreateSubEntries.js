@@ -72,33 +72,32 @@ const  CreateSubEntries=(props)=>{
   
         console.log(props.topicId)
         return (
-            <div>
-            <form  noValidate>
-                <TextField
-                    id="title"
-                    label="Header"
-                    placeholder="Entrie Header"
-                    multiline
-                    variant="outlined"
-                    onChange={handleChange}
-                /><br></br>
-                <br></br>
-                <TextField
-                    id="detail"
-                    label="Detail"
-                    placeholder="Enterie Detail"
-                    multiline
-                    variant="outlined"
-                    onChange={handleChange}
-                /><br></br>
-                <br></br>
-                <Button variant="contained" color="primary" disableElevation onClick={handleSubmit} >Submit</Button>
-                </form>
-            </div>
+            props.auth.email ?  <div>
+                <form  noValidate>
+                    <TextField
+                        id="title"
+                        label="Header"
+                        placeholder="Entrie Header"
+                        multiline
+                        variant="outlined"
+                        onChange={handleChange}
+                    /><br></br>
+                    <br></br>
+                    <TextField
+                        id="detail"
+                        label="Detail"
+                        placeholder="Enterie Detail"
+                        multiline
+                        variant="outlined"
+                        onChange={handleChange}
+                    /><br></br>
+                    <br></br>
+                    <Button variant="contained" color="primary" disableElevation onClick={handleSubmit} >Submit</Button>
+                    </form>
+                </div>  : null
+           
         )
     }
-
-
 
 const mapDispatchToProps = (dispatch,props) => {
     console.log(props.topicId)

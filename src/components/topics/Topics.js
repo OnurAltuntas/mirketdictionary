@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles,withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -10,7 +10,16 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Entries from '../entries/Entries';
 import Grid from '@material-ui/core/Grid';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
+const ColorLinearProgress = withStyles({
+    colorPrimary: {
+      backgroundColor: '#b2dfdb',
+    },
+    barColorPrimary: {
+      backgroundColor: '#00695c',
+    },
+  })(LinearProgress);
 
 const useStyles = makeStyles({
     root: {
@@ -58,13 +67,21 @@ const Topics = (props) => {
     if (topics) {
         return (
             <div>
+
                 <Grid container spacing={3}>
                     <Grid item xs={3} >
+                        <Card className={classes.root}>
+                            <CardContent>
+                                <Typography variant="h5" component="h2"  >
+                                    TOPICS
+                        </Typography>
+                            </CardContent>
+                        </Card><br></br>
                         {topics.map(item => (
                             <div>
-                                <Card className={classes.root}>
+                                <Card className={clasess_.root}  onClick={() => setentriId(item.id)}>
                                     <CardContent>
-                                        <Typography variant="h5" component="h2" onClick={() => setentriId(item.id)} >
+                                        <Typography variant="h5" component="h2"  >
                                             {item.title}
                                         </Typography>
                                     </CardContent>
@@ -83,7 +100,8 @@ const Topics = (props) => {
     } else {
         return (
             <div className="container center">
-                <p>Loading projects...</p>
+            <br></br>
+            <ColorLinearProgress className={classes.margin} />
             </div>
         )
     }
