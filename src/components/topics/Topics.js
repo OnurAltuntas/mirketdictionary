@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -8,6 +8,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Entries from '../entries/Entries';
+import Grid from '@material-ui/core/Grid';
 
 
 const useStyles = makeStyles({
@@ -27,35 +29,55 @@ const useStyles = makeStyles({
     },
 });
 
+const useStyles_ = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+}));
 
-const Topics =(props)=>{
+
+const Topics = (props) => {
     const { topics } = props;
     const classes = useStyles();
-    console.log(topics)
+    const clasess_ = useStyles_()
+    const initialState = 'cYc955rUg1lYXmlEpU7F'
+    const [entriId, setentriId] = useState(initialState)
 
-    const handleClick =(item)=>{
+
+    const handleClick = (item) => {
         console.log(item.id)
         console.log('click')
     }
-    
+
 
     if (topics) {
         return (
             <div>
-                {topics.map(item => (
-                    <div>
-                    <Card className={classes.root}>
-                        <CardContent>
-                            <Typography variant="h5" component="h2" onClick={() => handleClick(item)}>
-                                {item.title}
-                            </Typography>
-                        </CardContent>
-                       
-                    </Card>
-                    <hr></hr>
-                    </div>
-                   
-                ))}
+                <Grid container spacing={3}>
+                    <Grid item xs={3} >
+                        {topics.map(item => (
+                            <div>
+                                <Card className={classes.root}>
+                                    <CardContent>
+                                        <Typography variant="h5" component="h2" onClick={() => setentriId(item.id)} >
+                                            {item.title}
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                                <br></br>
+                            </div>
+                        ))}
+                    </Grid>
+
+                    <Grid item xs={5}>
+                        <Entries topicId={entriId} />
+                    </Grid>
+                </Grid>
             </div>
         )
     } else {
@@ -68,8 +90,8 @@ const Topics =(props)=>{
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state)
-    const topic= state.firestore.ordered.entries;
+
+    const topic = state.firestore.ordered.entries;
     //console.log(topic)
     return {
         topics: topic

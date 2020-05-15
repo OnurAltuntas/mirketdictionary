@@ -22,8 +22,9 @@ export default function FullWidthGrid() {
 
   return (
     <div className={classesGrid.root}>
-     <Entries/>
-     <CreateEntries/>
+     <Topics/>
+     
+    
     </div>
   );
 }

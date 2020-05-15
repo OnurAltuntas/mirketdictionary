@@ -43,6 +43,7 @@ class AddOrUpdateProduct extends Component {
             [e.target.id]: e.target.value,
             date:date,
             author:this.props.auth.email
+            
         })
     }
 

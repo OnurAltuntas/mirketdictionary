@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -40,80 +40,77 @@ const useStylesGrid = makeStyles((theme) => ({
 
 
 const Entries = (props) => {
+
     const classes = useStyles();
     const classesGrid = useStylesGrid();
-    const [entriId, setentriId] = useState({})
+    
 
-    const handleClick = (item) => {
-
-        setentriId('item.id')
-        console.log(entriId)
-        console.log('click')
-    }
+    const [entriId, setentriId] = useState(props)
+   
+    console.log(props.topicId)
+    
 
     const { entries } = props;
-    console.log(entries)
-    if (entries) {
+    const { myMessages } = props;
+    console.log(myMessages)
+   
+    if (entries && myMessages) {
         return (
             <div className='useStylesGrid'>
-                <Grid container spacing={4}>
-                <Grid item xs={6} sm={3}>
-                {entries.map(item => (
+            {entries.filter(item=>item.id===props.topicId).map(item => (
+                <div>
+                        <Card className={classes.root}>
+                            <CardContent>
+                                <Typography variant="h5" component="h2" onClick={() => setentriId(item.id)}>
+                                    {item.title}
+
+                                </Typography>
+                                <Typography variant="h5" component="h2" onClick={() => setentriId(item.id)}>
+                                    {item.detail}
+
+                                </Typography>
+                                <Typography variant="h5" component="h2" onClick={() => setentriId(item.id)}>
+                                    {item.author}
+
+                                </Typography>
+                                <Typography variant="h5" component="h2" onClick={() => setentriId(item.id)}>
+                                    {item.date}  
+
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                        <br></br>
+
+                    </div>
+            ))}
+                {myMessages.map(item => (
                     <div>
-                       
-                            <Card className={classes.root}>
-                                <CardContent>
-                                    <Typography variant="h5" component="h2" onClick={() => setentriId(item.id)}>
-                                        {item.title}
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                            <br></br>
-                      
+
+                        <Card className={classes.root}>
+                            <CardContent>
+                                <Typography variant="h5" component="h2" onClick={() => setentriId(item.id)}>
+                                    {item.title}
+
+                                </Typography>
+                                <Typography variant="h5" component="h2" onClick={() => setentriId(item.id)}>
+                                    {item.detail}
+
+                                </Typography>
+                                <Typography variant="h5" component="h2" onClick={() => setentriId(item.id)}>
+                                    {item.email}
+
+                                </Typography>
+                                <Typography variant="h5" component="h2" onClick={() => setentriId(item.id)}>
+                                    {item.date}  
+
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                        <br></br>
+
                     </div>
                 ))}
-                  </Grid>
-                   
-                    {entries.filter(item => item.id === entriId).map(item => (
-                        <Grid item xs={18} sm={6}>
-                            <Card className={classes.root}>
-                                <CardContent>
-                                    <Typography variant="h5" component="h2">
-                                        {item.title}
-                                    </Typography>
-                                    <Typography className={classes.pos} color="textSecondary">
-                                        {item.email}
-                                    </Typography>
-                                    <Typography variant="body2" component="p">
-                                        {item.detail}
-                                        <br /> <br />
-                                        {item.date}  {item.author}
-                                    </Typography>
-
-                                </CardContent>
-                                </Card>
-                                {item.subentries ? <Card className={classes.root}>
-                                <CardContent>
-                                    <Typography variant="h5" component="h2">
-                                        {item.subentries.title}
-                                    </Typography>
-                                    <Typography className={classes.pos} color="textSecondary">
-                                        {item.subentries.email}
-                                    </Typography>
-                                    <Typography variant="body2" component="p">
-                                        {item.subentries.detail}
-                                        <br /> <br />
-                                        {item.subentries.date}  {item.subentries.author}
-                                    </Typography>
-
-                                </CardContent>
-
-                            </Card> :null}
-                                
-                            
-                        </Grid>
-                    ))}
-                </Grid>
+          
 
             </div>
 
@@ -128,15 +125,33 @@ const Entries = (props) => {
     }
 }
 
+
 const mapStateToProps = (state, ownProps) => {
-
+    console.log(state)
     const projects = state.firestore.ordered.entries;
-
+    const mymessages = state.firestore.ordered.myMessages;
+  
+  
     return {
-        entries: projects
+        entries: projects,
+        myMessages: mymessages,
+        
     }
 }
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([{ collection: 'entries' }])
+
+    firestoreConnect(props => {
+        console.log(props.topicId)
+       
+       return [{
+            collection: 'entries',
+            doc: props.topicId,
+            subcollections: [{ collection: 'subentries' }],
+            storeAs: 'myMessages'
+        }]}),
+        firestoreConnect([{ collection: 'entries' }])
+
+    
 )(Entries)
+
