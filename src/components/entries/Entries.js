@@ -9,6 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import CreateSubEntries from '../entries/CreateSubEntries';
+
 
 const useStyles = makeStyles({
     root: {
@@ -110,6 +112,8 @@ const Entries = (props) => {
 
                     </div>
                 ))}
+
+                <CreateSubEntries topicId={props.topicId}/>
           
 
             </div>

@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Entries from '../entries/Entries'
 import CreateEntries from '../entries/CreateEntries'
 import Topics from '../topics/Topics';
+import CreateSubEntries from '../entries/CreateSubEntries';
 
 
 const useStylesGrid = makeStyles((theme) => ({
@@ -23,7 +24,6 @@ export default function FullWidthGrid() {
   return (
     <div className={classesGrid.root}>
      <Topics/>
-     
     
     </div>
   );
