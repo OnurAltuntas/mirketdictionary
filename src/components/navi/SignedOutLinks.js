@@ -1,9 +1,10 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom'
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import login from '../assets/login.png'
+import signup from '../assets/signup.png'
+
+
 
 
 const SingedOutLinks = () => {
@@ -18,7 +19,7 @@ const SingedOutLinks = () => {
                     aria-haspopup="true"
                     color="inherit"
                 >
-                    <VpnKeyIcon />SignUp
+                <img src={signup} alt="login" height="50" width="50"></img><h2>signup</h2>
             </IconButton>
             </Link>
 
@@ -29,7 +30,7 @@ const SingedOutLinks = () => {
                 color="inherit"
             >
 
-                <ArrowForwardIcon />Login
+            <img src={login} alt="login" height="50" width="50"></img> <h2>Login</h2>
         </IconButton></Link>
 
 

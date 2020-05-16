@@ -10,6 +10,7 @@ import fbConfig from './config/FbConfig'
 import { createFirestoreInstance } from 'redux-firestore'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import 'alertifyjs/build/css/alertify.min.css'
+import 'font-awesome/css/font-awesome.min.css';
 
 
 const store = configureStore();

@@ -2,28 +2,25 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { makeStyles,withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Entries from '../entries/Entries';
-import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 const ColorLinearProgress = withStyles({
     colorPrimary: {
-      backgroundColor: '#b2dfdb',
+        backgroundColor: '#b2dfdb',
     },
     barColorPrimary: {
-      backgroundColor: '#00695c',
+        backgroundColor: '#00695c',
     },
-  })(LinearProgress);
+})(LinearProgress);
 
 const useStyles = makeStyles({
     root: {
-        minWidth: 275,
+        minWidth: 500,
     },
     bullet: {
         display: 'inline-block',
@@ -31,7 +28,7 @@ const useStyles = makeStyles({
         transform: 'scale(0.8)',
     },
     title: {
-        fontSize: 25,
+        fontSize: 14,
     },
     pos: {
         marginBottom: 12,
@@ -57,51 +54,35 @@ const Topics = (props) => {
     const initialState = 'cYc955rUg1lYXmlEpU7F'
     const [entriId, setentriId] = useState(initialState)
 
-
-    const handleClick = (item) => {
-        console.log(item.id)
-        console.log('click')
-    }
-
-
     if (topics) {
         return (
-            <div>
-
-                <Grid container spacing={3}>
-                    <Grid item xs={3} >
-                        <Card className={classes.root}>
-                            <CardContent>
-                                <Typography variant="h5" component="h2"  >
-                                    TOPICS
-                        </Typography>
-                            </CardContent>
-                        </Card><br></br>
-                        {topics.map(item => (
-                            <div>
-                                <Card className={clasess_.root}  onClick={() => setentriId(item.id)}>
-                                    <CardContent>
-                                        <Typography variant="h5" component="h2"  >
-                                            {item.title}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                                <br></br>
-                            </div>
-                        ))}
-                    </Grid>
-
-                    <Grid item xs={5}>
-                        <Entries topicId={entriId} />
-                    </Grid>
-                </Grid>
+            <div class="row">
+                <div class="col-sm-3">
+                <h2><span class="badge badge-pill badge-light">Topics</span></h2>
+                    {topics.map(item => (
+                        <div>
+                            <Card className={clasess_.root} onClick={() => setentriId(item.id)}>
+                                <CardContent>
+                                    <Typography variant="h5" component="h2"  >
+                                        {item.title}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                            <hr></hr>
+                        </div>
+                    ))}
+                </div>
+                <div class="col-sm-5">
+                <h2><span class="badge badge-pill badge-light">Entries</span></h2>
+                    <Entries topicId={entriId} />
+                </div>
             </div>
         )
     } else {
         return (
             <div className="container center">
-            <br></br>
-            <ColorLinearProgress className={classes.margin} />
+                <br></br>
+                <ColorLinearProgress className={classes.margin} />
             </div>
         )
     }

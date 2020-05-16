@@ -14,21 +14,6 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import { signUp } from '../../redux/actions/authActions'
 
-
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -114,6 +99,7 @@ function SignUp({ auth, signUpAction,authError }) {
             color="primary"
             className={classes.submit}
             onClick={handleSubmit}
+            style={{background: '#2E3B55'}}
           >
             SIGN UP
           </Button>

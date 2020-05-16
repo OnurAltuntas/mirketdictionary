@@ -50,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
   
   const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log(UserInfos);
     singInAction(UserInfos)
   
   }
@@ -102,6 +101,7 @@ const useStyles = makeStyles((theme) => ({
             color="primary"
             className={classes.submit}
             onClick={handleSubmit}
+            style={{background: '#2E3B55'}}
           >
             Sign In
           </Button>

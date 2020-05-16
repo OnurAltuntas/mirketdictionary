@@ -1,17 +1,16 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {signOut} from '../../redux/actions/authActions'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import logout from '../assets/logout.png'
+import signup from '../assets/signup.png'
 
 
 const SignedInLinks = ({signOut,auth}) => {
-    //console.log(profile.email)
-    //console.log(auth.email)
+
     return (
         <ul className="right">
             <IconButton
@@ -21,7 +20,7 @@ const SignedInLinks = ({signOut,auth}) => {
                 color="inherit"
                 onClick={signOut}
             >
-                 <ExitToAppIcon />LogOut
+            <img src={logout} alt="login" height="50" width="50"></img> <h3>logout</h3>
             </IconButton>
             <Link to="/CreateEntries" style={{ textDecoration: 'none', color: 'white' }}> 
             <IconButton
@@ -30,11 +29,9 @@ const SignedInLinks = ({signOut,auth}) => {
                         aria-haspopup="true"
                         color="inherit"
                         >
-                        <AccountCircle />{auth.email}
+                        <img src={signup} alt="login" height="50" width="50"></img><h3>{auth.email}</h3>
                     </IconButton>
-            
             </Link>
-           
         </ul>
     )
 }
@@ -51,6 +48,4 @@ const mapDispatchToProps = (dispatch) =>{
         signOut: () => dispatch (signOut())
     }
 }
-
-
 export default connect(mapStateToProps,mapDispatchToProps)(SignedInLinks);

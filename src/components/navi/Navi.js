@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -75,41 +75,43 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Navi({ auth,profile }) {
+function Navi({ auth, profile }) {
     const classes = useStyles();
     console.log(auth.email)
-    
+
     const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
     return (
-        <div className={classes.grow}>
-            <AppBar style={{ background: '#2E3B55' }} position="static">
-                <Toolbar>
-                   
+       
+            <div className={classes.grow}>
+                <AppBar style={{ background: '#2E3B55' }} position="static">
+                    <Toolbar>
+
                         <div><h2>mirket</h2></div>
                         <Typography className={classes.title} variant="h6" noWrap>
-                        <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>    <img src={logo} alt="logo" height="100" width="100"></img></Link>
+                            <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>    <img src={logo} alt="logo" height="100" width="100"></img></Link>
                         </Typography>
 
                         <div><h2>dictionary</h2></div>
-                    
 
-                    <div className={classes.search}> </div>
-                    <div className={classes.grow} />
-                    <div className={classes.sectionDesktop}>
-                    </div>
-                    {auth.isLoaded &&
-                        links
-                    }
-                </Toolbar>
-            </AppBar>
-        </div>
+
+                        <div className={classes.search}> </div>
+                        <div className={classes.grow} />
+                        <div className={classes.sectionDesktop}>
+                        </div>
+                        {auth.isLoaded &&
+                            links
+                        }
+                    </Toolbar>
+                </AppBar>
+            </div>
+     
     );
 }
 
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
-        profile:state.firebase.profile
+        profile: state.firebase.profile
     }
 }
 

@@ -68,28 +68,19 @@ class AddOrUpdateProduct extends Component {
     render() {
       
         return (
-            <div>
-            <form  noValidate>
-                <TextField
-                    id="title"
-                    label="Header"
-                    placeholder="Entrie Header"
-                    multiline
-                    variant="outlined"
-                    onChange={this.handleChange}
-                /><br></br>
-                <br></br>
-                <TextField
-                    id="detail"
-                    label="Detail"
-                    placeholder="Enterie Detail"
-                    multiline
-                    variant="outlined"
-                    onChange={this.handleChange}
-                /><br></br>
-                <br></br>
-                <Button variant="contained" color="primary" disableElevation onClick={this.handleSubmit} >Submit</Button>
-                </form>
+            <div className="container">
+            <h2><span class="badge badge-pill badge-light">Create Entrie</span></h2>
+            <form>
+            <div class="form-group">
+              <label for="title">Header</label>
+              <input type="text" class="form-control" id="title" aria-describedby="title"  onChange={this.handleChange}></input>
+            </div>
+            <div class="form-group">
+            <label for="exampleFormControlTextarea1">Details</label>
+            <textarea class="form-control" id="detail" rows="3"  onChange={this.handleChange}></textarea>
+          </div>
+            <button style={{ background: '#2E3B55' }} type="submit" class="btn btn-primary"  onClick={this.handleSubmit}>Submit</button>
+          </form>
             </div>
         )
     }
