@@ -1,9 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { createProject } from '../../redux/actions/createEntriesActions'
-import { makeStyles } from '@material-ui/core/styles';
-
-
 
 
 class AddOrUpdateProduct extends Component {
@@ -14,7 +11,6 @@ class AddOrUpdateProduct extends Component {
         date: '',
         author: ''
     }
-
     handleChange = (e) => {
         const date = this.getDateNow()
       

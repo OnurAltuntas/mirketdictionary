@@ -37,16 +37,6 @@ const useStyles = makeStyles({
     },
 });
 
-const useStylesGrid = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    paper: {
-        padding: theme.spacing(3),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-}));
 
 
 const Entries = (props) => {
