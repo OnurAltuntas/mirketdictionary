@@ -17,7 +17,7 @@ const SingedOutLinks = () => {
                     aria-haspopup="true"
                     color="inherit"
                 >
-                   <img src={signup} alt="login" height="50" width="50"></img><h2>signup</h2>
+                   <img src={signup} alt="login" height="30" width="30"></img><h2>signup</h2>
                 </IconButton>
             </Link>
 
@@ -28,7 +28,7 @@ const SingedOutLinks = () => {
                 color="inherit"
             >
 
-                <img src={login} alt="login" height="50" width="50"></img> <h2>Login</h2>
+                <img src={login} alt="login" height="30" width="30"></img> <h2>Login</h2>
             </IconButton></Link>
 
 

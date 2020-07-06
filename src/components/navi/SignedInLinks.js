@@ -20,7 +20,7 @@ const SignedInLinks = ({signOut,auth}) => {
                 color="inherit"
                 onClick={signOut}
             >
-            <img src={logout} alt="login" height="50" width="50"></img> <h3>logout</h3>
+            <img src={logout} alt="login" height="30" width="30"></img> <h3></h3>
             </IconButton>
             <Link to="/CreateEntries" style={{ textDecoration: 'none', color: 'white' }}> 
             <IconButton
@@ -29,7 +29,7 @@ const SignedInLinks = ({signOut,auth}) => {
                         aria-haspopup="true"
                         color="inherit"
                         >
-                        <img src={signup} alt="login" height="50" width="50"></img><h3>{auth.email}</h3>
+                        <img src={signup} alt="login" height="30" width="30"></img><h3></h3>
                     </IconButton>
             </Link>
         </ul>

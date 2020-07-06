@@ -51,11 +51,6 @@ class AddOrUpdateProduct extends Component {
     handleSubmit = (e) => {
         
         e.preventDefault();
-        if(this.state.detail ===""){
-            return(
-                <label for="title">asdşlkfjsşa</label>
-            )
-        }
         this.props.createProject(this.state)
     }
 

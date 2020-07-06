@@ -3,7 +3,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import logo from '../assets/mirket-icon.png'
+import logo from '../assets/mirket-icon-fixed.png'
 import { Link } from 'react-router-dom'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
@@ -81,30 +81,24 @@ function Navi({ auth, profile }) {
 
     const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
     return (
-       
-            <div className={classes.grow}>
-                <AppBar style={{ background: '#2E3B55' }} position="static">
-                    <Toolbar>
 
-                        <div><h2>mirket</h2></div>
-                        <Typography className={classes.title} variant="h6" noWrap>
-                            <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>    <img src={logo} alt="logo" height="100" width="100"></img></Link>
-                        </Typography>
+        <div >
 
-                        <div><h2>dictionary</h2></div>
-
-
-                        <div className={classes.search}> </div>
-                        <div className={classes.grow} />
-                        <div className={classes.sectionDesktop}>
+            <AppBar style={{ background: '#2E3B55' }} position="static">
+                <Toolbar>
+                    <div class="container">
+                        <div class="row no-gutters">
+                            <div class="col-12 col-sm-6 col-md-10"> <img src={logo} alt="logo" height="120" width="263"></img></div>
+                            <div class="col-6 col-md-2"> {auth.isLoaded &&
+                                links
+                            }</div>
                         </div>
-                        {auth.isLoaded &&
-                            links
-                        }
-                    </Toolbar>
-                </AppBar>
-            </div>
-     
+                    </div>
+
+                </Toolbar>
+            </AppBar>
+        </div>
+
     );
 }
 

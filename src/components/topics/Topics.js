@@ -66,7 +66,7 @@ const Topics = (props) => {
 
     if (topics) {
         var currentTopics = [];
-        console.log("currentPage:" + currentPage.currentPage)
+        //console.log("currentPage:" + currentPage.currentPage)
 
         var isNanPreventerCurrentPage;
         if (isNaN(currentPage.currentPage))
@@ -94,8 +94,6 @@ const Topics = (props) => {
 
         //console.log(currentTopics);
 
-
-
         return (
             <div class="row">
                 <div class="col-sm-3">
@@ -116,7 +114,6 @@ const Topics = (props) => {
                         <ul class="pagination">
                             {pageNumbers.map(number => (
                                 <li class="page-item"  key={number}  id={number} onClick={handleClick}>{number}</li> 
-                               
                             ))}
                         </ul>
                     </nav>

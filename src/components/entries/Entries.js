@@ -97,7 +97,7 @@ const Entries = (props) => {
         for (let i = 1; i <= Math.ceil(entries.length / entriesPerPage); i++) {
             pageNumbers.push(i);
         }
-        console.log(indexOfFirstEntries)
+        //console.log(indexOfFirstEntries)
         console.log(currentEntries)
 
         return (
@@ -115,14 +115,13 @@ const Entries = (props) => {
                                 </Typography>
                                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                                     <div class="row">
-                                        <div class="col-sm">
+                                      
                                             {item.author}
-                                        </div>
-                                        <div class="col-sm">
-                                        </div>
-                                        <div class="col-sm">
+                                        
+                                       
+                                      
                                             {item.date}
-                                        </div>
+                                      
                                     </div>
                                 </Typography>
                             </CardContent>
