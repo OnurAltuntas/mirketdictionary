@@ -53,16 +53,14 @@ const Entries = (props) => {
 
     const classes = useStyles();
     const classesGrid = useStylesGrid();
-
-
     const [entriId, setentriId] = useState(props)
 
-    console.log(props.topicId)
+    //console.log(props.topicId)
 
 
     const { entries } = props;
     const { myMessages } = props;
-    console.log(myMessages)
+    //console.log(myMessages)
 
     if (entries && myMessages) {
         return (
@@ -141,7 +139,7 @@ const Entries = (props) => {
 
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state)
+    //console.log(state)
     const projects = state.firestore.ordered.entries;
     const mymessages = state.firestore.ordered.myMessages;
 
@@ -156,7 +154,7 @@ export default compose(
     connect(mapStateToProps),
 
     firestoreConnect(props => {
-        console.log(props.topicId)
+        //console.log(props.topicId)
 
         return [{
             collection: 'entries',

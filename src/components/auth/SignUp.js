@@ -48,7 +48,7 @@ function SignUp({ auth, signUpAction,authError }) {
   
   const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log(UserInfos);
+    //console.log(UserInfos);
     signUpAction(UserInfos)
   
   }

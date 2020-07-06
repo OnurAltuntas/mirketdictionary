@@ -5,8 +5,6 @@ import login from '../assets/login.png'
 import signup from '../assets/signup.png'
 
 
-
-
 const SingedOutLinks = () => {
 
 
@@ -19,8 +17,8 @@ const SingedOutLinks = () => {
                     aria-haspopup="true"
                     color="inherit"
                 >
-                <img src={signup} alt="login" height="50" width="50"></img><h2>signup</h2>
-            </IconButton>
+                   <img src={signup} alt="login" height="50" width="50"></img><h2>signup</h2>
+                </IconButton>
             </Link>
 
             <Link to="/signin" style={{ textDecoration: 'none', color: 'white' }}><IconButton
@@ -30,8 +28,8 @@ const SingedOutLinks = () => {
                 color="inherit"
             >
 
-            <img src={login} alt="login" height="50" width="50"></img> <h2>Login</h2>
-        </IconButton></Link>
+                <img src={login} alt="login" height="50" width="50"></img> <h2>Login</h2>
+            </IconButton></Link>
 
 
         </ul>

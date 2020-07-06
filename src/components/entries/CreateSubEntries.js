@@ -47,7 +47,7 @@ const  CreateSubEntries=(props)=>{
     }
 
   
-        console.log(props.topicId)
+        //console.log(props.topicId)
         return (
             props.auth.email ?  <div>
             <form>
@@ -64,7 +64,7 @@ const  CreateSubEntries=(props)=>{
     }
 
 const mapDispatchToProps = (dispatch,props) => {
-    console.log(props.topicId)
+    //console.log(props.topicId)
     return {
         createSubEntries: (project) => dispatch(createSubEntries(project,props.topicId))
     }

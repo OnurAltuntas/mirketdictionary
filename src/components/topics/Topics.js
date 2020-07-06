@@ -53,13 +53,54 @@ const Topics = (props) => {
     const clasess_ = useStyles_()
     const initialState = 'cYc955rUg1lYXmlEpU7F'
     const [entriId, setentriId] = useState(initialState)
+    const [currentPage, setcurrentPage] = useState(1)
+    const [topicsPerPage, settopicsPerPage] = useState(5)
+
+    const handleClick = (event) => {
+        setcurrentPage({
+            currentPage: Number(event.target.id)
+        });
+    }
+
+    //console.log(currentPage)
 
     if (topics) {
+        var currentTopics = [];
+        console.log("currentPage:" + currentPage.currentPage)
+
+        var isNanPreventerCurrentPage;
+        if (isNaN(currentPage.currentPage))
+            isNanPreventerCurrentPage = 1
+        else
+            isNanPreventerCurrentPage = currentPage.currentPage;
+
+        //console.log("temp:" + isNanPreventerCurrentPage)
+
+        var indexOfLastTopic = isNanPreventerCurrentPage * topicsPerPage;
+        const indexOfFirstTopic = indexOfLastTopic - topicsPerPage;
+        if (indexOfLastTopic > topics.length) {
+            indexOfLastTopic = topics.length;
+        }
+        //console.log(topics.length)
+        //console.log(currentPage.currentPage * topicsPerPage)
+        for (let i = indexOfFirstTopic; i < indexOfLastTopic; i++) {
+            currentTopics.push(topics[i]);
+        }
+
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(topics.length / topicsPerPage); i++) {
+            pageNumbers.push(i);
+        }
+
+        //console.log(currentTopics);
+
+
+
         return (
             <div class="row">
                 <div class="col-sm-3">
-                <h2><span class="badge badge-pill badge-light">Topics</span></h2>
-                    {topics.map(item => (
+                    <h2><span class="badge badge-pill badge-light">Topics</span></h2>
+                    {currentTopics.map(item => (
                         <div>
                             <Card className={clasess_.root} onClick={() => setentriId(item.id)}>
                                 <CardContent>
@@ -71,9 +112,20 @@ const Topics = (props) => {
                             <hr></hr>
                         </div>
                     ))}
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            {pageNumbers.map(number => (
+                                <li class="page-item"  key={number}  id={number} onClick={handleClick}>{number}</li> 
+                               
+                            ))}
+                        </ul>
+                    </nav>
+
+                    
+
                 </div>
                 <div class="col-sm-5">
-                <h2><span class="badge badge-pill badge-light">Entries</span></h2>
+                    <h2><span class="badge badge-pill badge-light">Entries</span></h2>
                     <Entries topicId={entriId} />
                 </div>
             </div>

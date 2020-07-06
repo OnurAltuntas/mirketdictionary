@@ -8,8 +8,6 @@ import NotFound from './components/common/NotFound';
 import CreateEntries from './components/entries/CreateEntries';
 
 
-
-
 function App() {
   return (
     <div className="App">
