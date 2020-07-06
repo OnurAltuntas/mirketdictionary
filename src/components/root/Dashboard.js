@@ -1,5 +1,4 @@
 import React from 'react';
-import Entries from '../entries/Entries'
 import Topics from '../topics/Topics';
 
 

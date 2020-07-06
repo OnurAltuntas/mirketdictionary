@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -52,7 +52,7 @@ const useStylesGrid = makeStyles((theme) => ({
 const Entries = (props) => {
 
     const classes = useStyles();
-    const classesGrid = useStylesGrid();
+    //const classesGrid = useStylesGrid();
     const [entriId, setentriId] = useState(props)
     const [currentPage, setcurrentPage] = useState(1)
     const [entriesPerPage, setentriesPerPage] = useState(5)
@@ -115,13 +115,8 @@ const Entries = (props) => {
                                 </Typography>
                                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                                     <div class="row">
-                                      
                                             {item.author}
-                                        
-                                       
-                                      
                                             {item.date}
-                                      
                                     </div>
                                 </Typography>
                             </CardContent>

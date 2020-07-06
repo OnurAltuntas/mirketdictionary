@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import logo from '../assets/mirket-icon-fixed.png'
-import { Link } from 'react-router-dom'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 import { connect } from 'react-redux'
@@ -76,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Navi({ auth, profile }) {
-    const classes = useStyles();
+    //const classes = useStyles();
     //console.log(auth.email)
 
     const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />

@@ -1,7 +1,5 @@
 import React from 'react'
 import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {signOut} from '../../redux/actions/authActions'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -20,7 +18,7 @@ const SignedInLinks = ({signOut,auth}) => {
                 color="inherit"
                 onClick={signOut}
             >
-            <img src={logout} alt="login" height="30" width="30"></img> <h3></h3>
+            <img src={logout} alt="login" height="30" width="30"></img>
             </IconButton>
             <Link to="/CreateEntries" style={{ textDecoration: 'none', color: 'white' }}> 
             <IconButton
@@ -29,7 +27,7 @@ const SignedInLinks = ({signOut,auth}) => {
                         aria-haspopup="true"
                         color="inherit"
                         >
-                        <img src={signup} alt="login" height="30" width="30"></img><h3></h3>
+                        <img src={signup} alt="login" height="30" width="30"></img>
                     </IconButton>
             </Link>
         </ul>
