@@ -54,6 +54,15 @@ const Entries = (props) => {
     const classes = useStyles();
     const classesGrid = useStylesGrid();
     const [entriId, setentriId] = useState(props)
+    const [currentPage, setcurrentPage] = useState(1)
+    const [entriesPerPage, setentriesPerPage] = useState(5)
+
+
+    const handleClick = (event) => {
+        setcurrentPage({
+            currentPage: Number(event.target.id)
+        });
+    }
 
     //console.log(props.topicId)
 
@@ -63,9 +72,37 @@ const Entries = (props) => {
     //console.log(myMessages)
 
     if (entries && myMessages) {
+        var currentEntries= [];
+
+        var isNanPreventerCurrentPage;
+        if (isNaN(currentPage.currentPage))
+            isNanPreventerCurrentPage = 1
+        else
+            isNanPreventerCurrentPage = currentPage.currentPage;
+
+        console.log("temp:" + isNanPreventerCurrentPage)
+
+        var indexOfLastEntries = isNanPreventerCurrentPage * entriesPerPage;
+        const indexOfFirstEntries = indexOfLastEntries - entriesPerPage;
+        if (indexOfLastEntries > myMessages.length) {
+            indexOfLastEntries = myMessages.length;
+        }
+        console.log(myMessages.length)
+        console.log(indexOfLastEntries)
+        for (let i = indexOfFirstEntries; i < indexOfLastEntries; i++) {
+            currentEntries.push(myMessages[i]);
+        }
+
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(entries.length / entriesPerPage); i++) {
+            pageNumbers.push(i);
+        }
+        console.log(indexOfFirstEntries)
+        console.log(currentEntries)
+
         return (
             <div className='useStylesGrid'>
-                {entries.filter(item => item.id === props.topicId).map(item => (
+                {currentEntries.filter(item => item.id === props.topicId).map(item => (
                     <div>
                         <Card className={classes.root} variant="outlined" style={{ backgroundImage: ' radial-gradient( circle 827px at 47.3% 48%,  rgba(255,255,255,1) 0%, rgba(138,192,216,1) 90% )' }}>
                             <CardContent>
@@ -93,7 +130,7 @@ const Entries = (props) => {
                         <hr></hr>
                     </div>
                 ))}
-                {myMessages.map(item => (
+                {currentEntries.map(item => (
                     <div>
                         <Card className={classes.root} variant="outlined" style={{ backgroundImage: ' radial-gradient( circle 827px at 47.3% 48%,  rgba(255,255,255,1) 0%, rgba(138,192,216,1) 90% )' }}>
                             <CardContent>
@@ -121,6 +158,14 @@ const Entries = (props) => {
                         <hr></hr>
                     </div>
                 ))}
+
+                <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {pageNumbers.map(number => (
+                        <li class="page-item"  key={number}  id={number} onClick={handleClick}>{number}</li> 
+                    ))}
+                </ul>
+            </nav>
 
                 <CreateSubEntries topicId={props.topicId} />
             </div>
