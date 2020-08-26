@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
             color="primary"
             className={classes.submit}
             onClick={handleSubmit}
-            style={{background: '#2E3B55'}}
+            style={{background: '#F20746'}}
           >
             Sign In
           </Button>

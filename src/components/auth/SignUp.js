@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
-import { signUp } from '../../redux/actions/authActions'
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { signUp } from "../../redux/actions/authActions";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -33,25 +33,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-function SignUp({ auth, signUpAction,authError }) {
+function SignUp({ auth, signUpAction, authError }) {
   const classes = useStyles();
-  const [UserInfos, setUserInfos] = useState({email:'',password:''})
+  const [UserInfos, setUserInfos] = useState({ email: "", password: "" });
 
-  const handleOnChange = (e) =>{
+  const handleOnChange = (e) => {
     setUserInfos({
       ...UserInfos,
-      [e.target.id]:e.target.value
-    })
-  }
-  
-  const handleSubmit = (e) =>{
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     //console.log(UserInfos);
-    signUpAction(UserInfos)
-  
-  }
-  if (auth.uid) return <Redirect to='/' />
+    signUpAction(UserInfos);
+  };
+  if (auth.uid) return <Redirect to="/" />;
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -98,13 +96,13 @@ function SignUp({ auth, signUpAction,authError }) {
             color="primary"
             className={classes.submit}
             onClick={handleSubmit}
-            style={{background: '#2E3B55'}}
+            style={{ background: "#F20746" }}
           >
             SIGN UP
           </Button>
         </form>
       </div>
-      {authError? <p>{authError}</p>:null}
+      {authError ? <p>{authError}</p> : null}
     </Container>
   );
 }
@@ -112,15 +110,14 @@ function SignUp({ auth, signUpAction,authError }) {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    authError:state.auth.authError
-  }
-}
+    authError: state.auth.authError,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signUpAction: (newUser) => dispatch(signUp(newUser))
-  }
-}
+    signUpAction: (newUser) => dispatch(signUp(newUser)),
+  };
+};
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

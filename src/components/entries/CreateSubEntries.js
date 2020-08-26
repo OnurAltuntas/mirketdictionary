@@ -1,11 +1,10 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
-import { createSubEntries } from '../../redux/actions/createSubEntriesActions'
-
+import { createSubEntries } from '../../redux/actions/createSubEntriesActions';
+import "../../index.css"
 
 
 const  CreateSubEntries=(props)=>{
-    
    
        const initialState = {
             title: '',
@@ -24,13 +23,24 @@ const  CreateSubEntries=(props)=>{
             author:props.auth.email
             
         })
-
-        
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.createSubEntries(state)
+
+       /*  if(initialState.detail!==""){
+            if (initialState.detail.length>1000){
+              alert("Be watchout  with length of title and details! (hint: Title : 90, Details : 1000)");
+            }else{
+                props.createSubEntries(state)
+            }
+           
+          }
+          else{
+            alert("Please dont leave any empty area!");
+          } */
+
+          props.createSubEntries(state)
     }
 
     const getDateNow = () => {
@@ -56,7 +66,7 @@ const  CreateSubEntries=(props)=>{
             <label for="exampleFormControlTextarea1">Details</label>
             <textarea class="form-control" id="detail" rows="3"  onChange={handleChange}></textarea>
           </div>
-            <button style={{ background: '#2E3B55' }} type="submit" class="btn btn-primary"  onClick={handleSubmit}>Submit</button>
+            <button style={{ background: '#F20746' }} type="submit" class="btn btn-primary"  onClick={handleSubmit}>Submit</button>
           </form>
                 </div>  : null
            
