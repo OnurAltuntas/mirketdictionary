@@ -61,15 +61,15 @@ const Entries = (props) => {
     if (isNaN(currentPage.currentPage)) isNanPreventerCurrentPage = 1;
     else isNanPreventerCurrentPage = currentPage.currentPage;
 
-    console.log("temp:" + isNanPreventerCurrentPage);
+    //console.log("temp:" + isNanPreventerCurrentPage);
 
     var indexOfLastEntries = isNanPreventerCurrentPage * entriesPerPage;
     const indexOfFirstEntries = indexOfLastEntries - entriesPerPage;
     if (indexOfLastEntries > myMessages.length) {
       indexOfLastEntries = myMessages.length;
     }
-    console.log(myMessages.length);
-    console.log(indexOfLastEntries);
+    //console.log(myMessages.length);
+    //console.log(indexOfLastEntries);
     for (let i = indexOfFirstEntries; i < indexOfLastEntries; i++) {
       currentEntries.push(myMessages[i]);
     }
@@ -79,7 +79,7 @@ const Entries = (props) => {
       pageNumbers.push(i);
     }
     //console.log(indexOfFirstEntries)
-    console.log(currentEntries);
+    //console.log(currentEntries);
 
     return (
       <div className="useStylesGrid">
