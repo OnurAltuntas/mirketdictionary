@@ -15,7 +15,7 @@
 
 ### Clone
 
-- Clone this repo to your local machine using `https://github.com/OnurAltuntas/mirketdictionary.git`
+- Clone this repo to your local machine using <a href="https://github.com/OnurAltuntas/mirketdictionary.git" target="_blank">`https://github.com/OnurAltuntas/mirketdictionary.git`</a>
 
 ### Setup
 
