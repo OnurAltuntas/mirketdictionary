@@ -1,5 +1,6 @@
 
 # mirketdictionary
+- You can visit from this site `https://mirketdictionary.netlify.app`
 
 > This is a example of dictionary/blog website
 
